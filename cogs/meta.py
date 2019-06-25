@@ -18,8 +18,10 @@ class Meta(commands.Cog):
     async def invite(self, ctx):
         """Send invite link"""
         app_info = await self.bot.application_info()
-        if app_info.bot_public:
-            await ctx.send(f"Here is my invite link: <https://discordapp.com/oauth2/authorize?client_id={app_info.id}&scope=bot&permissions=268445696>")
+        if app_info.bot_public or ctx.author == app_info.owner:
+            await ctx.send(f"{ctx.author.mention}, here is my invite link: <https://discordapp.com/oauth2/authorize?client_id={app_info.id}&scope=bot&permissions=268445696>")
+        else:
+            await ctx.send(f"{ctx.author.mention}, it looks like I'm not available publicly yet")
 
 
 def setup(bot):
