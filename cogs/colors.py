@@ -6,9 +6,12 @@ class RoleColor(commands.Cog):
         self.bot = bot
 
 
-    @commands.command(name='change', aliases=['modify'])
+    @commands.command(name='change', aliases=['modify', 'update'])
     async def change(self, ctx, *, hex_color=None):
-        """Update your Role Color"""
+        """
+        Update your Role Color with the desired Hex code
+        Get the hex color code from <http://hexpicker.com/>
+        """
         role_name = f"USER-{ctx.author.id}"
         hexpicker = "http://hexpicker.com/"
 

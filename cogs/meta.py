@@ -2,9 +2,22 @@ from discord.ext import commands
 import asyncio
 import discord
 
+
+class MyHelpCommand(commands.MinimalHelpCommand):
+    def get_command_signature(self, command):
+        return '%s%s %s' % (self.clean_prefix, command.qualified_name, command.signature)
+
+
 class Meta(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.old_help_command = bot.help_command
+        bot.help_command = MyHelpCommand()
+        bot.help_command.cog = self
+
+
+    def cog_unload(self):
+        self.bot.help_command = self.old_help_command
 
 
     @commands.command(hidden=True)
@@ -12,8 +25,8 @@ class Meta(commands.Cog):
         """Displays my intro message."""
         app_info = await self.bot.application_info()
         await ctx.send('Hello! I\'m a robot! {0.name}#{0.discriminator} made me.'.format(app_info.owner))
-        
-    
+
+
     @commands.command(name='invite')
     async def invite(self, ctx):
         """Send invite link"""
