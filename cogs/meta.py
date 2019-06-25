@@ -19,7 +19,7 @@ class Meta(commands.Cog):
         """Send invite link"""
         app_info = await self.bot.application_info()
         if app_info.bot_public:
-            await ctx.send(f"Here is my invite link: https://discordapp.com/oauth2/authorize?client_id={app_info.id}&scope=bot&permissions=268445696")
+            await ctx.send(f"Here is my invite link: <https://discordapp.com/oauth2/authorize?client_id={app_info.id}&scope=bot&permissions=268445696>")
 
 
 def setup(bot):
