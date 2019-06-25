@@ -14,6 +14,7 @@ class Meta(commands.Cog):
         await ctx.send('Hello! I\'m a robot! {0.name}#{0.discriminator} made me.'.format(app_info.owner))
         
     
+    @commands.command(name='invite')
     async def invite(self, ctx):
         """Send invite link"""
         app_info = await self.bot.application_info()
