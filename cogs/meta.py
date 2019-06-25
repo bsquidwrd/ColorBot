@@ -8,6 +8,13 @@ class MyHelpCommand(commands.MinimalHelpCommand):
         return '%s%s %s' % (self.clean_prefix, command.qualified_name, command.signature)
 
 
+    def add_bot_commands_formatting(self, commands, heading):
+        if commands:
+            joined = ', '.join(c.name for c in commands)
+            self.paginator.add_line('__**%s**__' % heading)
+            self.paginator.add_line(joined)
+
+
 class Meta(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
